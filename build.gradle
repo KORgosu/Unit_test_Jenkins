@@ -2,6 +2,9 @@ plugins {
 	id 'java'
 	id 'org.springframework.boot' version '3.5.4'
 	id 'io.spring.dependency-management' version '1.1.7'
+
+    id("org.sonarqube") version "6.0.1.5171"
+    id 'jacoco'
 }
 
 group = 'com.example'
@@ -37,4 +40,14 @@ dependencies {
 
 tasks.named('test') {
 	useJUnitPlatform()
+}
+
+jacocoTestCoverageVerification{
+    violationRules{
+        rule{
+            limit{
+                minimum = 0.2 //전체 테스트 커버리지 20% 이상이어야 함
+            }
+        }
+    }
 }
